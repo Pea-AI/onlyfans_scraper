@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write \"**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,5 +12,8 @@
   "description": "",
   "dependencies": {
     "wxt": "^0.20.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
   }
 }
