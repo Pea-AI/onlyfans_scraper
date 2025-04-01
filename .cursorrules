@@ -1,0 +1,48 @@
+{
+  "name": "onlyfans_scraper",
+  "description": "基于 WXT 框架的 OnlyFans 数据爬取浏览器插件",
+  "version": "1.0.0",
+  "rules": {
+    "filePatterns": {
+      "manifest": "manifest.json",
+      "background": "background/**/*.js",
+      "content": "content/**/*.js",
+      "popup": "popup/**/*.{js,html,css}",
+      "options": "options/**/*.{js,html,css}"
+    },
+    "dependencies": {
+      "required": ["wxt"],
+      "recommended": ["axios", "cheerio"]
+    },
+    "structure": {
+      "required": [
+        "manifest.json",
+        "background/",
+        "content/",
+        "popup/",
+        "options/"
+      ],
+      "optional": [
+        "assets/",
+        "utils/",
+        "types/",
+        "tests/"
+      ]
+    },
+    "naming": {
+      "background": "background/**/*.js",
+      "content": "content/**/*.js",
+      "popup": "popup/**/*.{js,html,css}",
+      "options": "options/**/*.{js,html,css}"
+    },
+    "linting": {
+      "javascript": {
+        "extends": ["eslint:recommended"],
+        "rules": {
+          "no-console": "warn",
+          "no-unused-vars": "warn"
+        }
+      }
+    }
+  }
+} 

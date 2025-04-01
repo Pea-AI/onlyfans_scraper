@@ -57,6 +57,12 @@
     <input type="number" id="maxPosts" value="50" min="1" max="1000">
   </div>
   <button id="scrapeButton">开始抓取</button>
+  <div id="progress" style="display: none; margin-top: 10px;">
+    <div style="margin-bottom: 5px;">已抓取: <span id="scrapedCount">0</span> / <span id="totalCount">0</span> 帖子</div>
+    <div style="width: 100%; background-color: #f0f0f0; border-radius: 4px;">
+      <div id="progressBar" style="width: 0%; height: 20px; background-color: #4CAF50; border-radius: 4px; transition: width 0.3s ease;"></div>
+    </div>
+  </div>
   <div id="status"></div>
   <script src="popup.js"></script>
 </body>

@@ -147,6 +147,12 @@ async function scrapeInfoAndPosts(maxPosts = 50) {
             text,
             media
           })
+          // 发送进度更新消息
+          chrome.runtime.sendMessage({
+            type: 'progress',
+            scraped: posts.length,
+            total: maxPosts
+          })
         }
       } catch (error) {
         console.error('解析帖子时出错:', error)
