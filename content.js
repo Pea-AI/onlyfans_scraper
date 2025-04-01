@@ -92,7 +92,7 @@ async function scrapeInfoAndPosts(maxPosts = 50) {
   while (true) {
     // 检查是否暂停
     while (window.isScrapingPaused) {
-      await new Promise(resolve => setTimeout(resolve, 100))
+      await new Promise((resolve) => setTimeout(resolve, 100))
     }
 
     window.scrollTo(0, document.documentElement.scrollHeight)
@@ -114,7 +114,7 @@ async function scrapeInfoAndPosts(maxPosts = 50) {
     for (const post of postElements) {
       // 检查是否暂停
       while (window.isScrapingPaused) {
-        await new Promise(resolve => setTimeout(resolve, 100))
+        await new Promise((resolve) => setTimeout(resolve, 100))
       }
 
       try {
