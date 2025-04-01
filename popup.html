@@ -56,7 +56,10 @@
     <label for="maxPosts">最大抓取帖子数量：</label>
     <input type="number" id="maxPosts" value="50" min="1" max="1000">
   </div>
-  <button id="scrapeButton">开始抓取</button>
+  <div class="button-group">
+    <button id="scrapeButton">开始抓取</button>
+    <button id="pauseButton" style="display: none; background-color: #ff9800;">暂停</button>
+  </div>
   <div id="progress" style="display: none; margin-top: 10px;">
     <div style="margin-bottom: 5px;">已抓取: <span id="scrapedCount">0</span> / <span id="totalCount">0</span> 帖子</div>
     <div style="width: 100%; background-color: #f0f0f0; border-radius: 4px;">

@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const url = URL.createObjectURL(blob)
         const a = document.createElement('a')
         a.href = url
-        a.download = `${username}_posts_${new Date().toISOString().split('T')[0]}.json`
+        a.download = `onlyfans_${username}_posts_${new Date().toISOString().split('T')[0]}.json`
         document.body.appendChild(a)
         a.click()
         document.body.removeChild(a)
@@ -22,12 +22,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ success: false, error: error.message })
       })
     return true // 保持消息通道开放
+  } else if (request.action === 'pause') {
+    window.isScrapingPaused = true
+    return true
+  } else if (request.action === 'resume') {
+    window.isScrapingPaused = false
+    return true
   }
 })
 
 async function scrapeInfoAndPosts(maxPosts = 50) {
   const posts = []
   let lastHeight = document.documentElement.scrollHeight
+  window.isScrapingPaused = false
 
   const username = window.location.pathname.split('/')[1]
 
@@ -83,6 +90,11 @@ async function scrapeInfoAndPosts(maxPosts = 50) {
 
   // 滚动到底部以加载更多内容
   while (true) {
+    // 检查是否暂停
+    while (window.isScrapingPaused) {
+      await new Promise(resolve => setTimeout(resolve, 100))
+    }
+
     window.scrollTo(0, document.documentElement.scrollHeight)
     await new Promise((resolve) =>
       setTimeout(resolve, 2000 + Math.floor(Math.random() * 3000))
@@ -100,6 +112,11 @@ async function scrapeInfoAndPosts(maxPosts = 50) {
     }
 
     for (const post of postElements) {
+      // 检查是否暂停
+      while (window.isScrapingPaused) {
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
+
       try {
         if (posts.length >= maxPosts) {
           break
